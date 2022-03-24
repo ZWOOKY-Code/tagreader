@@ -10,7 +10,7 @@ wifi:
 captive_portal:
 
 dashboard_import:
-  package_import_url: github://ZWOOKY-Code/tagreader/blob/main/tagreader-03.yaml
+  package_import_url: github://ZWOOKY-Code/tagreader/tagreader-01.yaml
 
 improv_serial:
 
@@ -31,7 +31,7 @@ esphome:
   # This will allow for (future) project identification,
   # configuration and updates.
   project:
-    name: adonno.tag_reader
+    name: zwooky_01.tag_reader
     version: "1.4"
 # If buzzer is enabled, notify on api connection success
   on_boot:
