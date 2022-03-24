@@ -10,7 +10,8 @@ wifi:
 captive_portal:
 
 dashboard_import:
-  package_import_url: github://adonno/tagreader/tagreader.yaml
+  package_import_url: github://ZWOOKY-Code/tagreader/blob/main/tagreader-03.yaml
+
 
 improv_serial:
 
