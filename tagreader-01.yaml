@@ -71,7 +71,7 @@ switch:
 # Define buttons for writing tags via HA 
 button:
   - platform: template
-    name: Write Tag Random
+    name: "${friendly_name} Write Tag Random"
     id: write_tag_random
     # Optional variables:
     icon: "mdi:pencil-box"
@@ -108,7 +108,7 @@ button:
           id: activity_led
       - rtttl.play: "write:d=24,o=5,b=100:b,b"
   - platform: template
-    name: Clean Tag
+    name: "${friendly_name} Clean Tag"
     id: clean_tag
     icon: "mdi:nfc-variant-off"
     on_press:
@@ -128,7 +128,7 @@ button:
           id: activity_led
       - rtttl.play: "write:d=24,o=5,b=100:b,b"
   - platform: template
-    name: Cancel writing 
+    name: "${friendly_name} Cancel writing" 
     id: cancel_writing
     icon: "mdi:pencil-off"
     on_press:
@@ -267,28 +267,28 @@ pn532_i2c:
             size_t spotify = payload.find("https://open.spotify.com");
             size_t sonos = payload.find("sonos-2://");
             if (type == "U" and hass != std::string::npos ) {
-              ESP_LOGD("tagreader", "Found Home Assistant tag NDEF");
+              ESP_LOGD("${friendly_name}", "Found Home Assistant tag NDEF");
               id(source)="hass";
               id(url)=payload;
               id(info)=payload.substr(hass + 34);
             }
             else if (type == "U" and applemusic != std::string::npos ) {
-              ESP_LOGD("tagreader", "Found Apple Music tag NDEF");
+              ESP_LOGD("${friendly_name}", "Found Apple Music tag NDEF");
               id(source)="amusic";
               id(url)=payload;
             }
             else if (type == "U" and spotify != std::string::npos ) {
-              ESP_LOGD("tagreader", "Found Spotify tag NDEF");
+              ESP_LOGD("${friendly_name}", "Found Spotify tag NDEF");
               id(source)="spotify";
               id(url)=payload;
             }
             else if (type == "U" and sonos != std::string::npos ) {
-              ESP_LOGD("tagreader", "Found Sonos app tag NDEF");
+              ESP_LOGD("${friendly_name}", "Found Sonos app tag NDEF");
               id(source)="sonos";
               id(url)=payload;
             }
             else if (type == "T" ) {
-              ESP_LOGD("tagreader", "Found music info tag NDEF");
+              ESP_LOGD("${friendly_name}", "Found music info tag NDEF");
               id(info)=payload;
             }
             else if ( id(source)=="" ) {
@@ -305,7 +305,7 @@ pn532_i2c:
           lambda: 'return ( id(source)=="uid" );'
         then:
           - homeassistant.tag_scanned: !lambda |-
-              ESP_LOGD("tagreader", "No HA NDEF, using UID");
+              ESP_LOGD("${friendly_name}", "No HA NDEF, using UID");
               return x;
         else:
         - if:
