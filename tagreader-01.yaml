@@ -16,8 +16,8 @@ improv_serial:
 
 
 substitutions:
-  name: tagreader03
-  friendly_name: TagReader03
+  name: tagreader01
+  friendly_name: TagReader01
 
 esphome:
   name: $name
